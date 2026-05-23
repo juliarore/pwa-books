@@ -1,1 +1,19 @@
-<p>book-card works!</p>
+<mat-card [routerLink]="['/books', book.id]">
+  <img mat-card-image [src]="book.cover" [alt]="book.title" />
+
+  <mat-card-content>
+    <h2>{{ book.title }}</h2>
+
+    <p>{{ book.author }}</p>
+
+    <p>{{ book.year }}</p>
+
+    <div class="stars">
+      @for (star of stars; track $index) {
+        <mat-icon>
+          {{ $index < book.rating ? "star" : "star_border" }}
+        </mat-icon>
+      }
+    </div>
+  </mat-card-content>
+</mat-card>
