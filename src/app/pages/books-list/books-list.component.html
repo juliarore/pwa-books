@@ -1,5 +1,11 @@
 <h1>Books</h1>
 
-@for (book of books(); track book.id) {
-  <p>{{ book.title }}</p>
+@if (loading()) {
+  <app-loading-spinner />
+} @else {
+  <div class="books-grid">
+    @for (book of books(); track book.id) {
+      <app-book-card [book]="book" />
+    }
+  </div>
 }
