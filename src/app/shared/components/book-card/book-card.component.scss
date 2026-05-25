@@ -1,18 +1,41 @@
 mat-card {
   cursor: pointer;
-  transition: 0.3s;
+  transition:
+    transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+    box-shadow 0.3s ease;
+
   height: 100%;
-}
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 
-mat-card:hover {
-  transform: scale(1.03);
-}
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
 
-img {
-  height: 350px;
-  object-fit: cover;
-}
+  h2 {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+    font-weight: 600;
+  }
 
-.stars {
-  display: flex;
+  img {
+    height: 320px;
+    object-fit: contain;
+    background-color: transparent;
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  .stars {
+    display: flex;
+    margin-top: 0.5rem;
+
+    mat-icon {
+      color: #f59e0b;
+      transform: scale(0.9);
+    }
+  }
 }
