@@ -1,11 +1,38 @@
-<h1>Books</h1>
+<div class="app-container">
+  <div class="header-section animate__animated animate__fadeInDown">
+    <h1 class="page-title">Books List</h1>
 
-@if (loading()) {
-  <app-loading-spinner />
-} @else {
-  <div class="books-grid">
-    @for (book of books(); track book.id) {
-      <app-book-card [book]="book" />
-    }
+    <div class="toolbar">
+      <button
+        mat-icon-button
+        (click)="toggleViewMode()"
+        [attr.aria-label]="
+          'Cambiar a vista de ' +
+          (viewMode() === 'cards' ? 'tabla' : 'tarjetas')
+        "
+      >
+        <mat-icon>{{
+          viewMode() === "cards" ? "table_rows" : "grid_view"
+        }}</mat-icon>
+      </button>
+    </div>
   </div>
-}
+
+  @if (loading()) {
+    <app-loading-spinner />
+  } @else {
+    @if (viewMode() === "cards") {
+      <div class="books-container">
+        @for (book of books(); track book.id; let i = $index) {
+          <app-book-card
+            class="animate__animated animate__fadeInUp"
+            [style.animationDelay]="i * 140 + 'ms'"
+            [book]="book"
+          />
+        }
+      </div>
+    } @else {
+      <app-books-table [books]="books()" />
+    }
+  }
+</div>
