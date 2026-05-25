@@ -1,4 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("./assets/css/animate.css");
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", "Helvetica Neue", sans-serif;
+  background-color: #fafafa;
+  color: #2c2c2c;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
