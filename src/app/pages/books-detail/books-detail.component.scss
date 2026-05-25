@@ -1,0 +1,121 @@
+:host {
+  display: block;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 1rem;
+
+  h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cover-wrapper {
+  text-align: center;
+  padding: 1rem;
+
+  img.book-cover {
+    display: inline-block;
+    max-width: 100%;
+    max-height: 450px;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+::ng-deep .details-panel {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+  overflow: hidden;
+
+  .mat-expansion-panel-header {
+    font-family: "Poppins", "Helvetica Neue", sans-serif !important;
+
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover,
+    &.cdk-keyboard-focused,
+    &.cdk-program-focused {
+      background-color: #f9f5ff !important;
+    }
+  }
+
+  .mat-expansion-panel-header.mat-expanded {
+    background-color: #f6f0ff !important;
+  }
+
+  .mat-expansion-panel-header-title,
+  .mat-expansion-panel-content,
+  .mat-expansion-panel-body,
+  mat-panel-title {
+    font-family: "Poppins", "Helvetica Neue", sans-serif !important;
+  }
+
+  .mat-expansion-panel-header-title {
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #3f51b5;
+  }
+
+  .book-properties {
+    padding-top: 1rem;
+
+    p {
+      margin: 0.8rem 0;
+      font-size: 1.05rem;
+      color: #4a4a4a;
+
+      strong {
+        color: #1a1a1a;
+        font-weight: 600;
+        display: inline-block;
+        width: 100px;
+      }
+    }
+  }
+}
+
+.not-found {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+button[mat-flat-button] {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 6px 16px rgba(103, 58, 183, 0.18);
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+
+    h1 {
+      font-size: 1.8rem;
+    }
+  }
+}

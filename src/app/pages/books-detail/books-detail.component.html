@@ -1,1 +1,60 @@
-<p>books-detail works!</p>
+@if (loading()) {
+  <app-loading-spinner />
+} @else if (book()) {
+  <div class="app-container">
+    <div class="header">
+      <h1>{{ book()?.title }}</h1>
+
+      <button mat-flat-button color="primary" routerLink="/books">
+        <mat-icon>arrow_back</mat-icon>
+        Back
+      </button>
+    </div>
+
+    <div class="main-content">
+      <div class="cover-wrapper">
+        <img [src]="book()?.cover" [alt]="book()?.title" class="book-cover" />
+      </div>
+
+      <mat-accordion>
+        <mat-expansion-panel class="details-panel" #panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ panel.expanded ? "Hide all details" : "Show all details" }}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div class="book-properties">
+            <p>
+              <strong>Author:</strong>
+              {{ book()?.author }}
+            </p>
+
+            <p>
+              <strong>Year:</strong>
+              {{ book()?.year }}
+            </p>
+
+            <p>
+              <strong>Language:</strong>
+              {{ book()?.language }}
+            </p>
+
+            <p>
+              <strong>Rating:</strong>
+              {{ book()?.rating }} / 5
+            </p>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+} @else {
+  <div class="app-container not-found">
+    <h2>Book not found!</h2>
+
+    <button mat-flat-button color="primary" routerLink="/books">
+      Back to Home
+    </button>
+  </div>
+}
