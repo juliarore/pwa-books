@@ -8,11 +8,14 @@
       "resources": {
         "files": [
           "/favicon.ico",
-          "/index.csr.html",
           "/index.html",
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/**",
+          "https://fonts.gstatic.com/**"
         ]
       }
     },
@@ -24,6 +27,28 @@
         "files": [
           "/**/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "openlibrary-api",
+      "urls": ["https://openlibrary.org/search.json?*"],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "1h",
+        "timeout": "2s",
+        "strategy": "freshness"
+      }
+    },
+    {
+      "name": "openlibrary-covers",
+      "urls": ["https://covers.openlibrary.org/**"],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "1d",
+        "timeout": "2s",
+        "strategy": "freshness"
       }
     }
   ]
