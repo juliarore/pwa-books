@@ -40,7 +40,7 @@ export class BooksService {
             title: book.title,
             author: book.author_name?.[0] || 'Unknown',
             cover: book.cover_i
-              ? `https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`
+              ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
               : 'https://via.placeholder.com/300x450',
             year: book.first_publish_year || 0,
             language:
