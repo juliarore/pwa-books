@@ -1,0 +1,47 @@
+.table-container {
+  padding: 1.5rem 0;
+  overflow-x: auto;
+  font-family: "Poppins", "Helvetica Neue", sans-serif;
+
+  table {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: "Poppins", "Helvetica Neue", sans-serif;
+
+    th.mat-mdc-header-cell {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #1a1a1a;
+      font-family: "Poppins", "Helvetica Neue", sans-serif;
+    }
+
+    td.mat-mdc-cell {
+      font-size: 1.05rem;
+      font-family: "Poppins", "Helvetica Neue", sans-serif;
+
+      img {
+        width: 84px;
+        border-radius: 4px;
+        margin: 0.5rem 0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .stars {
+        display: flex;
+        mat-icon {
+          color: #f59e0b;
+          transform: scale(0.85);
+        }
+      }
+    }
+
+    tr.clickable-row {
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f9f5ff;
+      }
+    }
+  }
+}
