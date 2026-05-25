@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { map, Observable } from 'rxjs';
 
@@ -10,7 +10,23 @@ import { Book } from '../models/book.model';
   providedIn: 'root',
 })
 export class BooksService {
-  private http = inject(HttpClient);
+  constructor(private http: HttpClient) {}
+
+  private getStableRating(id: string): number {
+    /*
+    NOTA: L'API d'OpenLibrary no proporciona una puntuació (rating) dels llibres, així que hem generat una manualment per poder mostrar-la a la interfície.
+    Inicialment es va utilitzar Math.random(), però això feia que el valor canviés cada vegada que es navegava entre la llista i el detall del llibre.
+    Per evitar aquest comportament, s'ha implementat una funció pseudo-hash que genera un valor fix a partir de l'identificador únic (id) del llibre.
+    La funció recorre els caràcters de l'id i aplica operacions matemàtiques per obtenir un número entre 1 i 5. D'aquesta manera, cada llibre manté sempre la mateixa puntuació independentment de la vista o la navegació dins l'aplicació.
+    */
+    let hash = 0;
+
+    for (const char of id) {
+      hash = (hash * 31 + char.charCodeAt(0)) % 5;
+    }
+
+    return hash + 1;
+  }
 
   getBooks(): Observable<Book[]> {
     return this.http
@@ -27,10 +43,18 @@ export class BooksService {
               ? `https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`
               : 'https://via.placeholder.com/300x450',
             year: book.first_publish_year || 0,
-            genre: book.subject?.[0] || 'Unknown',
-            rating: Math.floor(Math.random() * 5) + 1,
+            language:
+              book.language?.map((l: string) => l.toUpperCase()).join(', ') ||
+              'ENG',
+            rating: this.getStableRating(book.key),
           })),
         ),
       );
+  }
+
+  getBookById(id: string): Observable<Book | null> {
+    return this.getBooks().pipe(
+      map((books) => books.find((book) => book.id === id) || null),
+    );
   }
 }
